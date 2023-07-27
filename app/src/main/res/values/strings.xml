@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Bill</string>
     <string name="confirm_entered_password">Confirm Entered Password</string>
+    <string name="enter_your_first_name">Enter your First Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="last_name">Last Name</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your Password</string>
+    <string name="forgot_your_password_recover_it">Forgot Your Password? Recover It</string>
+    <string name="don_t_have_an_acoount_signup">Don\'t have an Acoount? SignUp</string>
 </resources>

@@ -32,41 +32,33 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.btnSignUp.setOnClickListener{
+
             validateSignUp()
+
         }
 
         userViewModel.regLiveData.observe(this, Observer { regResponse->
-            binding.progressBar2.visibility=View.GONE
             Toast.makeText(this, regResponse.message,Toast.LENGTH_LONG).show()
             startActivity(Intent(this, LogInActivity::class.java))
+            binding.pbLogIn.visibility=View.GONE
+
 
         })
         userViewModel.errLiveData.observe(this,Observer{ err->
             Toast.makeText(this,err,Toast.LENGTH_LONG).show()
-            binding.progressBar2.visibility=View.GONE
+            binding.pbLogIn.visibility=View.GONE
+
 
         })
 
 
 
-
-//        userViewModel.regLiveData.observe(this, Observer {
-//                regResponse->
-//            Toast.makeText(this, regResponse.message,Toast.LENGTH_LONG).show()
-//            startActivity(Intent(this, LogInActivity::class.java))
-//
-//        })
-//
-//        userViewModel.regLiveData.observe(this, Observer {
-//                error->
-//            Toast.makeText(this, error.message,Toast.LENGTH_LONG).show()
-//
-//        })
 
     }
 
     private fun validateSignUp() {
         clearErrors()
+
         val firstName = binding.etFirstName.text.toString()
         val lastName = binding.etLastName.text.toString()
         val password = binding.etPassword.text.toString()
@@ -106,15 +98,6 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         if (!error) {
-//            if (password == confirmPassword) {
-//                // Successful login
-//                val intent = Intent(this, LogInActivity::class.java)
-//                startActivity(intent)
-//                finish()
-//            } else {
-//                // Login failed
-//                Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show()
-//            }
             val registerRequest = RegisterRequest(
                 firstName = firstName,
                 lastName = lastName,
@@ -122,10 +105,10 @@ class SignUpActivity : AppCompatActivity() {
                 password = password,
                 phoneNumber = phoneNumber
             )
-
+            binding.pbLogIn.visibility=View.VISIBLE
             userViewModel.registerUser(registerRequest)
         }
-        binding.progressBar2.visibility=View.VISIBLE
+
 
     }
 
@@ -133,6 +116,10 @@ class SignUpActivity : AppCompatActivity() {
     private fun clearErrors() {
         binding.tilFirstName.error = null
         binding.tilPassword.error = null
+        binding.tilPhoneNumber.error=null
+        binding.tilPassword.error = null
+        binding.tilConfirmPassword.error=null
+        binding.tilEmail.error=null
     }
 }
 
