@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bill</string>
+    <string name="confirm_entered_password">Confirm Entered Password</string>
+</resources>
