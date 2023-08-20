@@ -8,4 +8,12 @@
     <string name="enter_your_password">Enter your Password</string>
     <string name="forgot_your_password_recover_it">Forgot Your Password? Recover It</string>
     <string name="don_t_have_an_acoount_signup">Don\'t have an Acoount? SignUp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="frequencies">
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Anual</item>
+    </string-array>
 </resources>

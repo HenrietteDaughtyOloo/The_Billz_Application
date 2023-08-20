@@ -4,6 +4,7 @@ import com.henriette.bill.api.ApiClient
 import com.henriette.bill.api.ApiInterface
 import com.henriette.bill.model.LogInRequest
 import com.henriette.bill.model.LogInResponse
+import com.henriette.bill.model.RegisterRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
