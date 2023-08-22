@@ -18,12 +18,15 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
-//        val btnLogOut = view.findViewById<Button>(R.id.btnLogOut)
-//        btnLogOut.setOnClickListener {
+
+
+        val logOutButton = view.findViewById<Button>(R.id.btnLogOut)
+
+        logOutButton.setOnClickListener {
             logOut()
-//        }
-        // Inflate the layout for this fragment
-return view
+        }
+        return view
+
     }
     private fun logOut(){
         val intent=Intent(activity, LogInActivity::class.java)

@@ -3,23 +3,30 @@ package com.henriette.bill.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.activity.viewModels
 import com.henriette.bill.R
 import com.henriette.bill.databinding.ActivityAddBillBinding
 import com.henriette.bill.databinding.FragmentSummaryBinding
+import com.henriette.bill.viewmodel.BillsViewModel
 import java.util.UUID
 
 class AddBillActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityAddBillBinding
+    val billsViewModel:BillsViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_bill)
+        binding = ActivityAddBillBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onResume() {
         super.onResume()
+        setupFreqSpinner()
+        setupDueDateSpinner()
+
 
     }
     fun setupFreqSpinner(){
