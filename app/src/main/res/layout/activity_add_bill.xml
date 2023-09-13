@@ -98,19 +98,35 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvDueDate"
         app:layout_constraintTop_toBottomOf="@+id/spFrequency" />
+    <DatePicker
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/dpDueDate"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvDueDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveBill"
+        app:layout_constraintTop_toBottomOf="@+id/spFrequency"/>
 
     <Button
         android:id="@+id/btnSaveBill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="292dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginBottom="186dp"
-        android:text="SaveBill"
+
+
+
+        android:text="@string/savebill"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spDueDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

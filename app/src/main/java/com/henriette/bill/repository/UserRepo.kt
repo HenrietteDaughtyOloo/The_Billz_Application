@@ -9,7 +9,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 class UserRepo {
-    val apiClient = ApiClient.buildClient(ApiInterface::class.java)
+   private val apiClient = ApiClient.buildClient(ApiInterface::class.java)
     suspend fun registerUser (registerRequest: RegisterRequest):Response<RegisterResponse>{
         return withContext(Dispatchers.IO){
             apiClient.registerUser(registerRequest)

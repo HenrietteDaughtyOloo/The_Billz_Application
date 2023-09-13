@@ -10,6 +10,11 @@
     <string name="don_t_have_an_acoount_signup">Don\'t have an Acoount? SignUp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="summary">Summary</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="paid">Paid</string>
+    <string name="settings">Settings</string>
+    <string name="savebill">SaveBill</string>
     <string-array name="frequencies">
         <item>Weekly</item>
         <item>Monthly</item>

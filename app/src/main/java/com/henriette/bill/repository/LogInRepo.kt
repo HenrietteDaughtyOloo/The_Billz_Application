@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 class LogInRepo {
-    val apiClient = ApiClient.buildClient(ApiInterface::class.java)
+    private val apiClient = ApiClient.buildClient(ApiInterface::class.java)
 
     suspend fun logInUser(logInRequest:LogInRequest): Response<LogInResponse>{
         return withContext(Dispatchers.IO){
