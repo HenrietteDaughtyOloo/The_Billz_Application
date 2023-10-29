@@ -1,9 +1,10 @@
 package com.henriette.bill.model
 
 import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 
-data class LoginRequest(
+data class UserLogin(
     @Expose var email:String,
-    @Expose var password:String,
+    @Expose var password: String,
+//    @SerializedName("user_id") var userId: String
+
 )

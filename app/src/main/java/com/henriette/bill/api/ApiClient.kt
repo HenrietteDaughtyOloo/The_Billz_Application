@@ -1,16 +1,18 @@
 package com.henriette.bill.api
 
+import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-   private var retrofit = Retrofit.Builder()
+    val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+
+    var retrofit = Retrofit.Builder()
         .baseUrl("http://13.37.106.218")
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
-    fun <T> buildClient (apiInterface: Class<T>):T{
+    fun <T> buildApiClient(apiInterface: Class<T>): T {
         return retrofit.create(apiInterface)
     }
-
 }

@@ -1,53 +1,129 @@
 package com.henriette.bill.utils
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.time.temporal.TemporalAdjuster
 import java.time.temporal.TemporalAdjusters
 import java.time.temporal.TemporalAdjusters.firstDayOfMonth
 import java.time.temporal.TemporalAdjusters.lastDayOfMonth
 import java.time.temporal.TemporalAdjusters.previousOrSame
 
 class DateTimeUtils {
-    companion object{
-        private fun formatddMMyyyy(localDateTime: LocalDateTime):String{
-            val format = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+    companion object {
+        @RequiresApi(Build.VERSION_CODES.O)
+        private fun formatDate(localDateTime: LocalDateTime): String {
+            val format = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             return localDateTime.format(format)
         }
 
-        fun getFirstDayOfMonth(): String{
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getFirstDayOfMonth(): String {
             val now = LocalDateTime.now()
             val firstDay = now.with(firstDayOfMonth())
-            return formatddMMyyyy(firstDay)
+            return formatDate(firstDay)
         }
-        fun getLastDayOfMonth(): String{
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getLastDayOfMonth(): String {
             val now = LocalDateTime.now()
             val lastDay = now.with(lastDayOfMonth())
-            return formatddMMyyyy(lastDay)
+            return formatDate(lastDay)
         }
-        fun getCurrentMonth():String{
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getCurrentMonth(): String {
             val now = LocalDateTime.now()
-            return now.month.value.toString()
+            return now.month.toString()
         }
-        fun getCurrentYear():String{
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getCurrentYear(): String {
             val now = LocalDateTime.now()
             return now.year.toString()
         }
-        fun getFirstDateOfWeek():String{
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getFirstDateOfWeek(): String {
             val now = LocalDateTime.now()
             val firstDay = now.with(previousOrSame(DayOfWeek.MONDAY))
-            return formatddMMyyyy(firstDay)
+            return formatDate(firstDay)
         }
-        fun getLastDateOfWeek():String{
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getLastDateOfWeek(): String {
             val now = LocalDateTime.now()
-            val lastDay = now.with(previousOrSame(DayOfWeek.SUNDAY))
-            return formatddMMyyyy(lastDay)
+            val lastDay = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY))
+            return formatDate(lastDay)
         }
-        fun getDateOfWeekDay(day:String):String{
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getDateOfWeekDay(dueDate: String): String {
             val now = LocalDateTime.now()
-            val weekDay = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.of(day.toInt())))
-            return formatddMMyyyy(weekDay)
+            val weekDay = now.with(TemporalAdjusters.nextOrSame(DayOfWeek.of(dueDate.toInt())))
+            return formatDate(weekDay)
+
+        }
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun createDateFromDay(dayOfMonth:String):String{
+            val now=LocalDateTime.now()
+            val date=now.withDayOfMonth(dayOfMonth.toInt())
+            return formatDate(date)
+        }
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun createDateFromDayAndMonth(day:Int, month:Int):String{
+            val now=LocalDateTime.now()
+            val date=now.withMonth(month).withDayOfMonth(day)
+            return formatDate(date)
+        }
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun formatDateReadable(date:String):String{
+            val originalFormat=DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val dateToFormat= LocalDate.parse(date,originalFormat)
+            val readableFormat=DateTimeFormatter.ofPattern("dd MMMM, yyyy")
+            return readableFormat.format(dateToFormat)
+        }
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getQuarterStartDate(year: String, quarter: Int): String {
+            val yearInt = year.toInt()
+            val quarterStartMonth: Int = when (quarter) {
+                1 -> 1
+                2 -> 4
+                3 -> 7
+                4 -> 10
+                else -> throw IllegalArgumentException("Invalid quarter: $quarter")
+            }
+
+            val firstDay = LocalDate.of(yearInt, quarterStartMonth, 1)
+            return formatDate(firstDay.atStartOfDay())
+        }
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getQuarterEndDate(year: String, quarter: Int): String {
+            val yearInt = year.toInt()
+            val quarterEndMonth: Int = when (quarter) {
+                1 -> 3
+                2 -> 6
+                3 -> 9
+                4 -> 12
+                else -> throw IllegalArgumentException("Invalid quarter: $quarter")
+            }
+
+            val lastDay = LocalDate.of(yearInt, quarterEndMonth, 1).withDayOfMonth(1).plusMonths(1).minusDays(1)
+            return formatDate(lastDay.atStartOfDay())
+        }
+
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getDateToday():String{
+            return formatDate(LocalDateTime.now())
         }
     }
+
 }
+
+
+

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "558407452519",
+    "project_id": "bills-8bae9",
+    "storage_bucket": "bills-8bae9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558407452519:android:0e8658b806ffcee3c8d1c2",
+        "android_client_info": {
+          "package_name": "com.henriette.bill"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV_Cw9CeAmSCxot6rkaJcLxTtta8GGWEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

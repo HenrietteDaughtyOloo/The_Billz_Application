@@ -1,39 +1,63 @@
 package com.henriette.bill.viewmodel
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.henriette.bill.database.UpcomingBillsDao
 import com.henriette.bill.model.Bill
+import com.henriette.bill.model.BillsSummary
 import com.henriette.bill.model.UpcomingBill
 import com.henriette.bill.repository.BillsRepository
 import kotlinx.coroutines.launch
 
 class BillsViewModel:ViewModel() {
-    private val billsRepo = BillsRepository()
-    private val saveBillResult = MutableLiveData<Result<Unit>>()
+    private val billsRepo= BillsRepository()
+    val summaryLiveData= MutableLiveData<BillsSummary>()
 
-
-    fun  saveBill(bill: Bill){
+    fun saveBill(bill: Bill){
         viewModelScope.launch {
-            try {
-                billsRepo.saveBill(bill)
-                saveBillResult.postValue(Result.success(Unit))
-            }catch (e: Exception){
-                saveBillResult.postValue(Result.failure(e))
-            }
-//            billsRepo.saveBill(bill)
+            billsRepo.saveBill(bill)
         }
     }
-    fun createRecurringBills(){
+    fun insertUpcomingBill(upcomingBill: UpcomingBill){
         viewModelScope.launch {
-            billsRepo.createRecurringMonthlyBills()
-            billsRepo.createRecurringMonthlyBills()
+            billsRepo.insertUpcomingBill(upcomingBill)
         }
     }
-    fun getUpcomingBillsByFrequency(freq:String): LiveData<List<UpcomingBillsDao>> {
+//    fun getAllBills(): LiveData<List<Bill>> {
+//        return billsRepo.getAllBills()
+//    }
+
+    fun getUpcomingBillsByFrequency(freq:String):LiveData<List<UpcomingBill>>{
         return billsRepo.getUpcomingBillsByFrequency(freq)
-
     }
+
+    fun updateUpcomingBill(upcomingBill: UpcomingBill){
+        viewModelScope.launch {
+            billsRepo.updateUpcomingBill(upcomingBill)
+        }
+    }
+
+    fun getPaidBills():LiveData<List<UpcomingBill>>{
+        return billsRepo.getPaidBills()
+    }
+
+    fun fetchRemoteBills(){
+        viewModelScope.launch {
+            billsRepo.fetchRemoteBills()
+            billsRepo.fetchRemoteUpcomingBills()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getMonthlySummary(){
+        viewModelScope.launch {
+            summaryLiveData.postValue(billsRepo.getMonthlySummary().value)
+        }
+    }
+
+
 }

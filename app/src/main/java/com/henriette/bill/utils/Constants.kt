@@ -2,14 +2,16 @@ package com.henriette.bill.utils
 
 class Constants {
     companion object{
-       const val PREFS ="BILL_PREFS"
-       const val USER_ID = "USER_ID"
-        const val ACCESS_TOKEN = "ACCESS_TOKEN"
-        const val EMPTY_STRING = ""
-       const val WEEKLY = "WEEKLY"
-       const val MONTHLY = "MONTHLY"
-       const val ANNUALLY = "ANUALLY"
-        const val MONDAY = "MONDAY"
-        const val SUNDAY = "SUNDAY"
+        val PREFS="BILLZ_PREFS"
+        val USER_ID="USER_ID"
+        val ACCESS_TOKEN="ACCESS_TOKEN"
+        val EMPTY_STRING=""
+        val billId="BILL_ID"
+        val WEEKLY="Weekly"
+        val MONTHLY="Monthly"
+        val ANNUAL="Annual"
+        val QUARTERLY="Quarterly"
+        val CREATE_RECURRING_BILLS="CREATE_RECURRING_BILLS"
+        val SYNC_BILLS= "SYNC_BILLS"
     }
 }

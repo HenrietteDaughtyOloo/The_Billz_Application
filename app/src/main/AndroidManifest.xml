@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".BillApp"
+        android:name=".BillzApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.SplashActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpcomingBillsList"
             android:exported="false" />
         <activity
@@ -26,11 +29,11 @@
             android:name=".ui.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.LogInActivity"
+            android:name=".ui.LoginActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.SignUpActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ui.SignUpActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">

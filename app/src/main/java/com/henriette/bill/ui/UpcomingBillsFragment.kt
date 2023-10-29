@@ -9,63 +9,65 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.henriette.bill.R
 import com.henriette.bill.databinding.FragmentUpcomingBillsBinding
+import com.henriette.bill.model.UpcomingBill
+import com.henriette.bill.utils.Constants
 import com.henriette.bill.viewmodel.BillsViewModel
 
 
-class UpComingBillsFragment : Fragment() {
-    private  val binding : FragmentUpcomingBillsBinding?=null
-    val billsViewModel = BillsViewModel by viewModels()
-
-
+class UpcomingBillsFragment : Fragment(), onClickBill {
+    private var binding:FragmentUpcomingBillsBinding? = null
+    private val billsViewModel:BillsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentUpcomingBillsBinding.inflate(inflater,container, "false")
-        return binding.root
-
-        return inflater.inflate(R.layout.fragment_upcoming_bills, container, false)
-
+        binding = FragmentUpcomingBillsBinding.inflate(inflater,container,false)
+        return binding?.root
     }
 
     override fun onResume() {
         super.onResume()
-        getUpComingBills()
+        getUpcomingBills()
     }
-    fun getUpComingBills(){
-        billsViewModel.getUpComingBillsByFrequency(com.henriette.bill.utils.Constants.WEEKLY)
+    private fun getUpcomingBills(){
+        billsViewModel.getUpcomingBillsByFrequency(Constants.WEEKLY)
             .observe(this){weeklyBills->
-                val adapter = UpcomingBillsAdapter(weeklyBills)
-                binding?.rvWeekly?.LayoutManager= LinearLayoutManager(requireContext())
-                binding?.rvWeekly?.adapter=adapter
-
-            }
-        billsViewModel.getUpComingBillsByFrequency(com.henriette.bill.utils.Constants.WEEKLY)
-            .observe(this){weeklyBills->
-                val adapter = UpcomingBillsAdapter(weeklyBills)
-                binding?.rvWeekly?.LayoutManager= LinearLayoutManager(requireContext())
-                binding?.rvWeekly?.adapter=adapter
-
-            }
-        billsViewModel.getUpComingBillsByFrequency(com.henriette.bill.utils.Constants.WEEKLY)
-            .observe(this){weeklyBills->
-                val adapter = UpcomingBillsAdapter(weeklyBills)
-                binding?.rvWeekly?.LayoutManager= LinearLayoutManager(requireContext())
-                binding?.rvWeekly?.adapter=adapter
-
+                val adapter = UpcomingBillsAdapter(weeklyBills,this)
+                binding?.rvweekly?.layoutManager=LinearLayoutManager(requireContext())
+                binding?.rvweekly?.adapter = adapter
             }
 
+        billsViewModel.getUpcomingBillsByFrequency(Constants.MONTHLY)
+            .observe(this){monthlyBills->
+                val adapter = UpcomingBillsAdapter(monthlyBills,this)
+                binding?.rvmonthly?.layoutManager=LinearLayoutManager(requireContext())
+                binding?.rvmonthly?.adapter=adapter
+            }
+        billsViewModel.getUpcomingBillsByFrequency(Constants.QUARTERLY)
+            .observe(this){quarterlyBills->
+                val adapter = UpcomingBillsAdapter(quarterlyBills,this)
+                binding?.rvquartely?.layoutManager=LinearLayoutManager(requireContext())
+                binding?.rvquartely?.adapter=adapter
+            }
 
-
+        billsViewModel.getUpcomingBillsByFrequency(Constants.ANNUAL)
+            .observe(this){annualBills->
+                val adapter = UpcomingBillsAdapter(annualBills,this)
+                binding?.rvannual?.layoutManager=LinearLayoutManager(requireContext())
+                binding?.rvannual?.adapter=adapter
+            }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding=null
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
+    override fun onCheckBoxMarked(upcomingBill: UpcomingBill) {
+        upcomingBill.paid=!upcomingBill.paid
+        upcomingBill.synched=false
 
-
+        billsViewModel.updateUpcomingBill(upcomingBill)
+    }
 }

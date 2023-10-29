@@ -1,24 +1,38 @@
 <resources>
-    <string name="app_name">Bill</string>
-    <string name="confirm_entered_password">Confirm Entered Password</string>
-    <string name="enter_your_first_name">Enter your First Name</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="last_name">Last Name</string>
-    <string name="enter_your_email">Enter your email</string>
-    <string name="enter_your_password">Enter your Password</string>
-    <string name="forgot_your_password_recover_it">Forgot Your Password? Recover It</string>
-    <string name="don_t_have_an_acoount_signup">Don\'t have an Acoount? SignUp</string>
+    <string name="app_name">Billz</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="summary">Summary</string>
-    <string name="upcoming">Upcoming</string>
-    <string name="paid">Paid</string>
     <string name="settings">Settings</string>
-    <string name="savebill">SaveBill</string>
+    <string name="paid">Paid</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="summary">Summary</string>
+    <string name="name">Name</string>
+    <string name="amount">Amount</string>
+    <string name="due_date">Due Date</string>
+    <string name="frequency">Frequency</string>
+    <string name="button">Button</string>
+    <string name="delete">Delete</string>
+    <string name="bills_summary">Bills Summary</string>
+    <string name="sign_up_page">Sign up Page</string>
+    <string name="register">Register</string>
+    <string name="confirmpassword">ConfirmPassword</string>
+    <string name="lastname">LastName</string>
+    <string name="login">Login</string>
+    <string name="welcome_to_our_bill_tracking_app_please_register_by_creating_an_account">Welcome to our bill tracking app, please register by creating an account</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_page">Login Page</string>
+    <string name="billid">BillId</string>
+    <string name="userid">UserId</string>
+    <string name="annual">ANNUAL</string>
+    <string name="weekly">WEEKLY</string>
+    <string name="monthly">MONTHLY</string>
+    <string name="quarterly">QUARTERLY</string>
+    <string name="upcoming_bills">Upcoming Bills</string>
+    <string name="paid_bills">Paid Bills</string>
     <string-array name="frequencies">
         <item>Weekly</item>
         <item>Monthly</item>
         <item>Quarterly</item>
-        <item>Anual</item>
+        <item>Annual</item>
     </string-array>
 </resources>
