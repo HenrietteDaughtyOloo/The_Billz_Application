@@ -5,4 +5,5 @@ data class BillsSummary(
     var upcoming:Double,
     var overdue:Double,
     var total:Double
+
 )
